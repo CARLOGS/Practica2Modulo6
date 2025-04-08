@@ -12,5 +12,5 @@ class LanguageRepository(
     private val languageApi = retrofit.create(LanguageApi::class.java)
 
     suspend fun getLanguages(): List<LanguageDto> = languageApi.getLanguages()
-    suspend fun getLanguageDetail(id: String?): LanguageDetailDto = languageApi.getLanguageDetail(id)
+    suspend fun getLanguageDetail(id: Int?): LanguageDetailDto = languageApi.getLanguageDetail(id.toString())
 }

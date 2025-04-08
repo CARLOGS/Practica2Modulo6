@@ -1,16 +1,21 @@
 package com.dgtic.practica2modulo6.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dgtic.practica2modulo6.R
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.dgtic.practica2modulo6.application.Practica2Modulo6App
+import com.dgtic.practica2modulo6.data.LanguageRepository
+import com.dgtic.practica2modulo6.databinding.FragmentLanguageDetailBinding
+import com.dgtic.practica2modulo6.utils.Constants
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ID = "id"
+private const val NAME = "name"
 
 /**
  * A simple [Fragment] subclass.
@@ -18,15 +23,19 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class LanguageDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var name: String? = null
+    private var id: Int? = null
+
+    private var _binding: FragmentLanguageDetailBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var repository: LanguageRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            id = it.getInt(ID)
+            name = it.getString(NAME)
         }
     }
 
@@ -35,26 +44,55 @@ class LanguageDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_language_detail, container, false)
+        _binding = FragmentLanguageDetailBinding.inflate(inflater, container, false)
+
+        // Manda llamar al initRepository en VideogamesRFApp
+        repository = (requireActivity().application as Practica2Modulo6App).repository
+
+        lifecycleScope.launch {
+            try {
+                // Consume Servicio GET de cada lenaguaje
+                val languageDetail = repository.getLanguageDetail(id)
+
+                // Asigna los valores recuperados
+                binding.apply {
+                    tvTitle.text = name
+
+                    Glide.with(requireContext())
+                        .load(languageDetail.image_url)
+                        .into(ivImage)
+
+                    tvLongDesc.text = languageDetail.attributes?.get(0)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                binding.pbLoading.visibility = View.GONE
+            }
+        }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        Log.d(Constants.LOGTAG, "onViewCreated: $id")
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LanguageDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(id: Int, name: String) =
             LanguageDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt(ID, id)
+                    putString(NAME, name)
                 }
             }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
