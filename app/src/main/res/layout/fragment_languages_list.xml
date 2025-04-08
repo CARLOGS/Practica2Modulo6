@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4D1C1C"
+    tools:context=".ui.fragments.LanguagesListFragment">
+
+    <!-- NOTA: Se agrega el progressBar personalizado utilizando el loading_anim que creamos -->
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/cube"
+        android:indeterminateDuration="1500"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lstLanguages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</FrameLayout>
