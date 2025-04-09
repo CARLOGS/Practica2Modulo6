@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.dgtic.practica2modulo6.application.Practica2Modulo6App
@@ -13,6 +14,7 @@ import com.dgtic.practica2modulo6.data.LanguageRepository
 import com.dgtic.practica2modulo6.databinding.FragmentLanguageDetailBinding
 import com.dgtic.practica2modulo6.utils.Constants
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 private const val ID = "id"
 private const val NAME = "name"
@@ -71,6 +73,9 @@ class LanguageDetailFragment : Fragment() {
                     for ( att in languageDetail.attributes!! )
                         lblAttributes.text = lblAttributes.text.toString() + "\n- " + att
                 }
+            } catch (ioe: IOException) {
+                ioe.printStackTrace()
+                Toast.makeText(requireActivity(), "No fue posible conectarse al servicio", Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {

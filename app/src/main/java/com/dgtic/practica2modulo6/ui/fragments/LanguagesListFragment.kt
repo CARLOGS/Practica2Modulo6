@@ -39,6 +39,40 @@ class LanguagesListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLanguagesListBinding.inflate(inflater, container, false)
+
+        binding.apply {
+            btnRetry.setOnClickListener {
+                // Consume servicio GET que lista los lenguajes de programación
+                lifecycleScope.launch {
+                    binding.pbLoading.visibility = View.VISIBLE
+
+                    try {
+                        val languages = repository.getLanguages()
+
+                        // Llena los datos de los lenguajes
+                        doDataBinding(languages)
+
+                        binding.btnRetry.visibility = View.INVISIBLE
+                    } catch (ioe: IOException) {
+                        binding.btnRetry.visibility = View.VISIBLE
+                        ioe.printStackTrace()
+                        Toast.makeText(
+                            requireActivity(),
+                            "No fue posible conectarse al servicio",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Toast.makeText(requireActivity(), "Error: ${e.message}", Toast.LENGTH_LONG)
+                            .show()
+                    } finally {
+                        // Oculta el progressBar
+                        binding.pbLoading.visibility = View.GONE
+                    }
+                }
+            }
+    }
+
         return binding.root
     }
 
@@ -58,6 +92,7 @@ class LanguagesListFragment : Fragment() {
                 doDataBinding(languages)
 
             } catch (ioe: IOException) {
+                binding.btnRetry.visibility = View.VISIBLE
                 ioe.printStackTrace()
                 Toast.makeText(requireActivity(), "No fue posible conectarse al servicio", Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
