@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Practica2Modulo6</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="languages_fisrt_release">Primera versión: %1$d</string>
+    <string name="languages_oop">OOP: %1$s</string>
+    <string name="datail_developer">Desarrollador:</string>
+    <string name="datail_released">Lanzamiento:</string>
+    <string name="datail_compiler">Compilador:</string>
+    <string name="datail_cross_platform">Multiplataforma:</string>
+    <string name="datail_oop">OOP:</string>
+    <string name="datail_attibutes">Características:</string>
+    <string name="splash_starting">Iniciando ...</string>
 </resources>

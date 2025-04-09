@@ -56,13 +56,20 @@ class LanguageDetailFragment : Fragment() {
 
                 // Asigna los valores recuperados
                 binding.apply {
-                    tvTitle.text = name
+                    lblName.text = name
+                    lblDeveloper.text = languageDetail.co
+                    lblReleased.text = languageDetail.year.toString()
+                    lblCompiled.text = languageDetail.compiled
+                    lblCrossPlatform.text = languageDetail.cross_platform
+                    lblOOP.text = languageDetail.oop
 
                     Glide.with(requireContext())
                         .load(languageDetail.image_url)
-                        .into(ivImage)
+                        .into(imgLanguage)
 
-                    tvLongDesc.text = languageDetail.attributes?.get(0)
+                    lblAttributes.text = lblAttributes.text.toString() + "\n"
+                    for ( att in languageDetail.attributes!! )
+                        lblAttributes.text = lblAttributes.text.toString() + "\n- " + att
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

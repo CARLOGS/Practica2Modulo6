@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4D1C1C"
+    android:background="#141A31"
     tools:context=".ui.fragments.LanguagesListFragment">
 
     <!-- NOTA: Se agrega el progressBar personalizado utilizando el loading_anim que creamos -->
