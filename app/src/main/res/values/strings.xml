@@ -9,4 +9,8 @@
     <string name="datail_oop">OOP:</string>
     <string name="datail_attibutes">Características:</string>
     <string name="splash_starting">Iniciando ...</string>
+    <string name="language_conection_error">No fue posible conectarse al servicio</string>
+    <string name="languages_error">Error: %1$s</string>
+    <string name="lenguages_selected">Lenguaje seleccionado: %1$s</string>
+    <string name="languages_retry">Reintentar conexión</string>
 </resources>

@@ -28,5 +28,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="20dp"
-        android:text="Reintentar conexión" />
+        android:text="@string/languages_retry" />
 </FrameLayout>

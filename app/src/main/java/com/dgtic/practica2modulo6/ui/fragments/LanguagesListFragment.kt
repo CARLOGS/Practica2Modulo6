@@ -58,13 +58,16 @@ class LanguagesListFragment : Fragment() {
                         ioe.printStackTrace()
                         Toast.makeText(
                             requireActivity(),
-                            "No fue posible conectarse al servicio",
+                            getString(R.string.language_conection_error),
                             Toast.LENGTH_LONG
                         ).show()
                     } catch (e: Exception) {
                         e.printStackTrace()
-                        Toast.makeText(requireActivity(), "Error: ${e.message}", Toast.LENGTH_LONG)
-                            .show()
+                        Toast.makeText(
+                            requireActivity(),
+                            getString(R.string.languages_error, e.message),
+                            Toast.LENGTH_LONG
+                        ).show()
                     } finally {
                         // Oculta el progressBar
                         binding.pbLoading.visibility = View.GONE
@@ -94,10 +97,18 @@ class LanguagesListFragment : Fragment() {
             } catch (ioe: IOException) {
                 binding.btnRetry.visibility = View.VISIBLE
                 ioe.printStackTrace()
-                Toast.makeText(requireActivity(), "No fue posible conectarse al servicio", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireActivity(),
+                    getString(R.string.language_conection_error),
+                    Toast.LENGTH_LONG
+                ).show()
             } catch (e: Exception) {
                 e.printStackTrace()
-                Toast.makeText(requireActivity(), "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireActivity(),
+                    getString(R.string.languages_error, e.message),
+                    Toast.LENGTH_LONG
+                ).show()
             } finally {
                 // Oculta el progressBar
                 binding.pbLoading.visibility = View.GONE
@@ -109,7 +120,8 @@ class LanguagesListFragment : Fragment() {
         binding.lstLanguages.apply {
             layoutManager = LinearLayoutManager(requireActivity())
             adapter = LanguagesAdapter(languages) { selectedLanguage ->
-                Log.d(Constants.LOGTAG, "Lenguaje seleccionado: ${selectedLanguage.name}")
+                Log.d(Constants.LOGTAG,
+                    context.getString(R.string.lenguages_selected, selectedLanguage.name))
 
                 // Al Click llama al fragment de detalle del juego
                 selectedLanguage.id?.let { id ->
