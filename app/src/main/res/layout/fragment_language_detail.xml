@@ -27,8 +27,8 @@
             android:id="@+id/imgLanguage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:scaleType="fitCenter"
             app:layout_constraintTop_toBottomOf="@+id/lblName"
             app:riv_corner_radius="10dp"
@@ -47,13 +47,14 @@
                 android:id="@+id/tvDeveloper"
                 android:layout_width="153dp"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:fontFamily="@font/ubuntu"
                 android:paddingLeft="15dp"
                 android:paddingTop="5dp"
                 android:text="@string/datail_developer"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textStyle="bold"
+                android:layout_columnWeight="1"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/lblDeveloper"
                 android:layout_width="wrap_content"
@@ -62,7 +63,8 @@
                 android:paddingTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_columnWeight="12" />
+                android:textAlignment="textStart"
+                android:layout_columnWeight="20" />
 
             <TextView
                 android:id="@+id/tvReleased"
@@ -73,7 +75,8 @@
                 android:paddingTop="5dp"
                 android:paddingRight="15dp"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 android:text="@string/datail_released"
                 android:layout_columnWeight="1"/>
             <TextView
@@ -84,7 +87,8 @@
                 android:paddingTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_columnWeight="12" />
+                android:textAlignment="textStart"
+                android:layout_columnWeight="20" />
 
             <TextView
                 android:id="@+id/tvCompiled"
@@ -95,7 +99,8 @@
                 android:paddingTop="5dp"
                 android:paddingRight="15dp"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="@string/datail_compiler"
                 android:layout_columnWeight="1"/>
             <TextView
@@ -106,7 +111,8 @@
                 android:paddingTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_columnWeight="12" />
+                android:textAlignment="textStart"
+                android:layout_columnWeight="20" />
 
             <TextView
                 android:id="@+id/tvCrossPlatform"
@@ -117,8 +123,10 @@
                 android:paddingTop="5dp"
                 android:paddingRight="15dp"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:text="@string/datail_cross_platform" android:layout_columnWeight="1"/>
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="@string/datail_cross_platform"
+                android:layout_columnWeight="1"/>
             <TextView
                 android:id="@+id/lblCrossPlatform"
                 android:layout_width="wrap_content"
@@ -127,7 +135,8 @@
                 android:paddingTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_columnWeight="12" />
+                android:textAlignment="textStart"
+                android:layout_columnWeight="20" />
 
             <TextView
                 android:id="@+id/tvOOP"
@@ -138,8 +147,10 @@
                 android:paddingTop="5dp"
                 android:paddingRight="15dp"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:text="@string/datail_oop" android:layout_columnWeight="1"/>
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="@string/datail_oop"
+                android:layout_columnWeight="1"/>
             <TextView
                 android:id="@+id/lblOOP"
                 android:layout_width="wrap_content"
@@ -148,7 +159,8 @@
                 android:paddingTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:layout_columnWeight="12" />
+                android:textAlignment="textStart"
+                android:layout_columnWeight="20" />
         </GridLayout>
             <LinearLayout
                 app:layout_constraintTop_toBottomOf="@+id/grdData"
@@ -164,7 +176,8 @@
                     android:paddingTop="15dp"
                     android:paddingRight="15dp"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     android:text="@string/datail_attibutes" />
 
                 <ScrollView

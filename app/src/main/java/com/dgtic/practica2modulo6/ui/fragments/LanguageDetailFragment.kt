@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.dgtic.practica2modulo6.R
 import com.dgtic.practica2modulo6.application.Practica2Modulo6App
 import com.dgtic.practica2modulo6.data.LanguageRepository
 import com.dgtic.practica2modulo6.databinding.FragmentLanguageDetailBinding
@@ -75,7 +76,8 @@ class LanguageDetailFragment : Fragment() {
                 }
             } catch (ioe: IOException) {
                 ioe.printStackTrace()
-                Toast.makeText(requireActivity(), "No fue posible conectarse al servicio", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(),
+                    getString(R.string.detail_conexion_err), Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
@@ -88,8 +90,6 @@ class LanguageDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Log.d(Constants.LOGTAG, "onViewCreated: $id")
     }
 
     companion object {
