@@ -72,6 +72,9 @@ dependencies {
     //Imágenes con bordes redondeados
     implementation(libs.roundedimageview)
 
+    //Biblioteca para videos en YouTube
+    implementation(libs.core)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

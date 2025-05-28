@@ -25,5 +25,8 @@ data class LanguageDetailDto(
     var image_url: String? = null,
 
     @SerializedName("attributes")
-    var attributes: List<String>? = null
+    var attributes: List<String>? = null,
+
+    @SerializedName("youtube")
+    var youtube: String? = null
 )

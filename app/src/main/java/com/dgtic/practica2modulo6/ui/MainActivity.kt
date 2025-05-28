@@ -1,5 +1,6 @@
 package com.dgtic.practica2modulo6.ui
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.dgtic.practica2modulo6.ui.fragments.LanguagesListFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.start_song)
+        mediaPlayer.start()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -31,5 +36,20 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_container, LanguagesListFragment())
                 .commit()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer.pause()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        mediaPlayer.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.release()
     }
 }

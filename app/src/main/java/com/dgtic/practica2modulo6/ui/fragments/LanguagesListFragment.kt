@@ -1,12 +1,12 @@
 package com.dgtic.practica2modulo6.ui.fragments
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +18,6 @@ import com.dgtic.practica2modulo6.databinding.FragmentLanguagesListBinding
 import com.dgtic.practica2modulo6.ui.adapters.LanguagesAdapter
 import com.dgtic.practica2modulo6.utils.Constants
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -32,6 +31,8 @@ class LanguagesListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var repository: LanguageRepository
+    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var mediaPlayerError: MediaPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,8 @@ class LanguagesListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLanguagesListBinding.inflate(inflater, container, false)
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.click_sound)
+        mediaPlayerError = MediaPlayer.create(requireContext(), R.raw.error_sound)
 
         binding.apply {
             btnRetry.setOnClickListener {
@@ -61,6 +64,9 @@ class LanguagesListFragment : Fragment() {
                             getString(R.string.language_conection_error),
                             Toast.LENGTH_LONG
                         ).show()
+
+                        // Sonido de error
+                        mediaPlayerError.start()
                     } catch (e: Exception) {
                         e.printStackTrace()
                         Toast.makeText(
@@ -68,6 +74,9 @@ class LanguagesListFragment : Fragment() {
                             getString(R.string.languages_error, e.message),
                             Toast.LENGTH_LONG
                         ).show()
+
+                        // Sonido de error
+                        mediaPlayerError.start()
                     } finally {
                         // Oculta el progressBar
                         binding.pbLoading.visibility = View.GONE
@@ -102,6 +111,9 @@ class LanguagesListFragment : Fragment() {
                     getString(R.string.language_conection_error),
                     Toast.LENGTH_LONG
                 ).show()
+
+                // Sonido de error
+                mediaPlayerError.start()
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(
@@ -109,6 +121,9 @@ class LanguagesListFragment : Fragment() {
                     getString(R.string.languages_error, e.message),
                     Toast.LENGTH_LONG
                 ).show()
+
+                // Sonido de error
+                mediaPlayerError.start()
             } finally {
                 // Oculta el progressBar
                 binding.pbLoading.visibility = View.GONE
@@ -125,6 +140,9 @@ class LanguagesListFragment : Fragment() {
 
                 // Al Click llama al fragment de detalle del juego
                 selectedLanguage.id?.let { id ->
+                    // Reproduce un sonido
+                    mediaPlayer.start()
+
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(
                             R.id.fragment_container,
@@ -142,6 +160,10 @@ class LanguagesListFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+
+        mediaPlayer.release()
+        mediaPlayerError.release()
+
         _binding = null
     }
 }
