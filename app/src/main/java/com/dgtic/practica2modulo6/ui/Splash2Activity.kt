@@ -49,7 +49,7 @@ class Splash2Activity : AppCompatActivity() {
         // Delay de 2 segundo
         Handler().postDelayed({
             // Lanza el MainActivity
-            val intent = Intent(this@Splash2Activity, MainActivity::class.java)
+            val intent = Intent(this@Splash2Activity, LoginActivity::class.java)
             startActivity(intent)
 
             // Destruye el SplashActivity

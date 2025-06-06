@@ -1,5 +1,6 @@
 package com.dgtic.practica2modulo6.ui.fragments
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import com.dgtic.practica2modulo6.R
 import com.dgtic.practica2modulo6.application.Practica2Modulo6App
 import com.dgtic.practica2modulo6.data.LanguageRepository
 import com.dgtic.practica2modulo6.databinding.FragmentLanguageDetailBinding
+import com.dgtic.practica2modulo6.ui.MapActivity
 import com.dgtic.practica2modulo6.utils.Constants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -31,6 +33,10 @@ private const val NAME = "name"
  */
 class LanguageDetailFragment : Fragment() {
     private var name: String? = null
+    private var language: String? = null
+    private var developer: String? = null
+    private var lat: Double? = null
+    private var long: Double? = null
     private var id: Int? = null
 
     private var _binding: FragmentLanguageDetailBinding? = null
@@ -68,6 +74,15 @@ class LanguageDetailFragment : Fragment() {
             fillData()
         }
 
+        binding.imgMap.setOnClickListener {
+            val intent = Intent(requireContext(), MapActivity::class.java)
+            intent.putExtra("language", language)
+            intent.putExtra("developer", developer)
+            intent.putExtra("lat", lat)
+            intent.putExtra("long", long)
+            startActivity(intent)
+        }
+
         return binding.root
     }
 
@@ -91,6 +106,11 @@ class LanguageDetailFragment : Fragment() {
                     lblCompiled.text = languageDetail.compiled
                     lblCrossPlatform.text = languageDetail.cross_platform
                     lblOOP.text = languageDetail.oop
+
+                    language = name
+                    developer = languageDetail.co
+                    lat = languageDetail.lat
+                    long = languageDetail.long
 
                     // Youtube video
                     vidLanguaje.addYouTubePlayerListener(object: AbstractYouTubePlayerListener() {

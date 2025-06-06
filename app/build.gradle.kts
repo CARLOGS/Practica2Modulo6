@@ -1,8 +1,10 @@
-import org.jetbrains.kotlin.backend.wasm.ir2wasm.bind
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
 }
 
 android {
@@ -17,6 +19,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val localProperties = Properties()
+        val localPropertiesFile = rootProject.file("local.properties")
+        if(localPropertiesFile.exists()){
+            localProperties.load(localPropertiesFile.inputStream())
+        }
+
+        val mapsApiKey = localProperties.getProperty("MAPS_API_KEY")
+
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 
     buildTypes {
@@ -53,6 +65,10 @@ dependencies {
     // Splash Screen
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.glide)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     annotationProcessor(libs.compiler)
 
     //Para retrofit y Gson
@@ -74,6 +90,9 @@ dependencies {
 
     //Biblioteca para videos en YouTube
     implementation(libs.core)
+
+    //Google Maps (Play services de Google Maps, tanto para vistas XML como para Compose)
+    implementation(libs.play.services.maps)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

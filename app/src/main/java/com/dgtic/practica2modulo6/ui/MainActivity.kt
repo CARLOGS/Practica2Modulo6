@@ -40,12 +40,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        mediaPlayer.pause()
+        // mediaPlayer.pause()
     }
 
     override fun onRestart() {
         super.onRestart()
-        mediaPlayer.start()
+        // mediaPlayer.start()
     }
 
     override fun onDestroy() {

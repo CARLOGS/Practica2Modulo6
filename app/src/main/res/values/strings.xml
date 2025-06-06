@@ -14,4 +14,36 @@
     <string name="lenguages_selected">Lenguaje seleccionado: %1$s</string>
     <string name="languages_retry">Reintentar conexión</string>
     <string name="detail_conexion_err">No fue posible conectarse al servicio</string>
+    <string name="catalog">Catálogo</string>
+    <string name="cat_languages">Lenguajes</string>
+    <string name="login">Ingresar</string>
+    <string name="logon">Registrarse</string>
+    <string name="pass_reset">¿Olvidó su contraseña? Restablecer aquí</string>
+    <string name="email">Correo electrónico</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="email_required">Se requiere el correo</string>
+    <string name="email_invalid">El correo no tiene un formato válido</string>
+    <string name="invalid_data">Por favor ingrese un correo y contraseña válidos</string>
+    <string name="empty_email">Se requiere una contraseña</string>
+    <string name="pass_invalid_size">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="invalid_email">Error: El correo electrónico no tiene un formato correcto</string>
+    <string name="invalid_pass">Error: La contraseña no es válida</string>
+    <string name="already_exist_account">Error: Una cuenta ya existe con el mismo correo, pero con diferentes datos de ingreso</string>
+    <string name="email_used">Error: el correo electrónico ya está en uso con otra cuenta.</string>
+    <string name="expired_token">Error: La sesión ha expirado. Favor de ingresar nuevamente.</string>
+    <string name="user_not_found">Error: No existe el usuario con la información proporcionada.</string>
+    <string name="weak_pass">La contraseña porporcionada es inválida</string>
+    <string name="not_network">Red no disponible o se interrumpió la conexión</string>
+    <string name="not_authentication">Error. No se pudo autenticar exitosamente.</string>
+    <string name="welcome">Bienvenido %1$s</string>
+    <string name="verification_sent">Se ha enviado un correo de verificación</string>
+    <string name="verification_not_sent">No se pudo enviar el correo de verificación</string>
+    <string name="email_pass_sent">Se ha enviado un correo para restablecer la contraseña</string>
+    <string name="email_pass_not_sent">No se pudo enviar el correo para restablecer la contraseña</string>
+    <string name="reset_pass">Restablecer contraseña</string>
+    <string name="email_input">Ingrese correo</string>
+    <string name="send">Enviar</string>
+    <string name="cancel">Cancelar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

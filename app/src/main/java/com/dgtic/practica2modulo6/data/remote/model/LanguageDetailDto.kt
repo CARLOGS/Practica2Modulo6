@@ -28,5 +28,11 @@ data class LanguageDetailDto(
     var attributes: List<String>? = null,
 
     @SerializedName("youtube")
-    var youtube: String? = null
+    var youtube: String? = null,
+
+    @SerializedName("lat")
+    var lat: Double? = null,
+
+    @SerializedName("long")
+    var long: Double? = null
 )

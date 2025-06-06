@@ -1,5 +1,6 @@
 package com.dgtic.practica2modulo6.ui.fragments
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +16,11 @@ import com.dgtic.practica2modulo6.application.Practica2Modulo6App
 import com.dgtic.practica2modulo6.data.LanguageRepository
 import com.dgtic.practica2modulo6.data.remote.model.LanguageDto
 import com.dgtic.practica2modulo6.databinding.FragmentLanguagesListBinding
+import com.dgtic.practica2modulo6.ui.LoginActivity
 import com.dgtic.practica2modulo6.ui.adapters.LanguagesAdapter
 import com.dgtic.practica2modulo6.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -30,6 +34,9 @@ class LanguagesListFragment : Fragment() {
     private var _binding: FragmentLanguagesListBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var firebaseAuth: FirebaseAuth
+    private var user: FirebaseUser? = null
+
     private lateinit var repository: LanguageRepository
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var mediaPlayerError: MediaPlayer
@@ -42,6 +49,10 @@ class LanguagesListFragment : Fragment() {
         _binding = FragmentLanguagesListBinding.inflate(inflater, container, false)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.click_sound)
         mediaPlayerError = MediaPlayer.create(requireContext(), R.raw.error_sound)
+        firebaseAuth = FirebaseAuth.getInstance()
+        user = firebaseAuth.currentUser
+
+        binding.txtUser.text = user?.email
 
         binding.apply {
             btnRetry.setOnClickListener {
@@ -83,7 +94,14 @@ class LanguagesListFragment : Fragment() {
                     }
                 }
             }
-    }
+        }
+
+        // Cierra sesión y regresa al Login
+        binding.imgHome.setOnClickListener {
+            firebaseAuth.signOut()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            requireActivity().finish()
+        }
 
         return binding.root
     }
