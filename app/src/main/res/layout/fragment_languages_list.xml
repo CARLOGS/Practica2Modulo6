@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#141A31"
+    android:background="@color/main_blue"
     tools:context=".ui.fragments.LanguagesListFragment">
 
     <!-- NOTA: Se agrega el progressBar personalizado utilizando el loading_anim que creamos -->
@@ -20,17 +20,28 @@
         android:id="@+id/txtUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|left"
+        android:layout_gravity="top|start"
         android:visibility="visible"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/lblExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:visibility="visible"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:text="@string/exit"
         android:textColor="@color/white" />
 
     <ImageView
         android:id="@+id/imgHome"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_gravity="top|right"
+        android:layout_gravity="top|end"
         android:src="@drawable/outline_door_open_24"
         android:visibility="visible"
         app:tint="@color/white" />

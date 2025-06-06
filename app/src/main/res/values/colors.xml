@@ -9,4 +9,5 @@
     <color name="language_dark_blue">#1E2746</color>
     <color name="purple">#440877</color>
     <color name="main_blue">#141A31</color>
+    <color name="detail_color">#1F294E</color>
 </resources>
